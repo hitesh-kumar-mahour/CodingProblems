@@ -1,80 +1,73 @@
 package prc;
-
+import java.lang.reflect.Array;
 import java.util.*;
 
+public class Abc{
 
-public class Abc {
-
-
-	public static boolean is_palindrome(String a)
-	{
-		for(int i=0,j=a.length()-1;j>=0;i++,j--)
-		{
-		if(a.charAt(i)!=a.charAt(j))
-			return false;
-		
-		}
-	 return true;
-	}
 	
-	public static String[] Subsequence(String a)
-	{
-		if(a.length()<=0)
-		{
-			String []Output={""};
-		return Output;
-		}
-		String smallOutput[]=Subsequence(a.substring(1));
-		String Output[]= new String[2*smallOutput.length];
-		
-		for(int i=0;i<smallOutput.length;i++)
-		{
-			Output[i]=smallOutput[i];
-		}
-		for(int i=0;i<smallOutput.length;i++)
-		Output[smallOutput.length+i]=a.charAt(0)+smallOutput[i];
-		
-		return Output;
-	}
-	
-	public static void printSubsequences(String input,String decisionSoFar)
-	{
-		if(input.length()==0)
-		{
-			System.out.println(decisionSoFar);
-			return;
-		}
-
-		printSubsequences(input.substring(1), decisionSoFar);
-		printSubsequences(input.substring(1), decisionSoFar+input.charAt(0));
-		
-	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner s= new Scanner(System.in);
-		System.out.print("enter string:");
-		String  a= s.nextLine();
-		String[] all_subs=Subsequence(a);
-		int min_hit=Integer.MAX_VALUE;
-		for(int i=0;i<all_subs.length;i++) {
-			if(is_palindrome(all_subs[i])) {
-				int curr_hits=a.length()-all_subs[i].length();
-				System.out.println(all_subs[i]+"-- hits req="+curr_hits);
-				min_hit=Math.min(min_hit, curr_hits);
-			}
-		}
-		
-		System.out.println("min hits ="+min_hit);
-		
-		
-		
-//		System.out.println(Subsequence(a));
-//		boolean ans=is_palindrome(a);
-//		   if (ans==true)
-//			   System.out.println(a+" is palindrome");
-//		   else
-//			   System.out.println(a+ " is not palindrome" );
-	
+		int[][] grid = {{0,2,2,1,1,0}};
+		System.out.println(orangesRotting(grid));
 	}
-
+	
+	public static boolean rot(int i, int j, int [][]grid, int[][] temp){
+        if(i<0||i>=grid.length||j<0||j>=grid[i].length)
+            return false;
+        if(grid[i][j]==0 || grid[i][j]==2)
+            return false;
+        
+        temp[i][j]=2;
+        return true;
+    }
+    
+    public static int orangesRotting(int[][] grid){
+        
+        int count = 0;
+        
+        return orangesRotting(grid, count);
+    }
+    public static int orangesRotting(int[][] grid, int count)
+    {
+        boolean change = false;
+        int [][] temp = new int[grid.length][grid[0].length];
+        for(int i=0;i<grid.length;i++)
+            for(int j=0;j<grid[i].length;j++)
+            	temp[i][j]=grid[i][j];
+        
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[i].length;j++){
+                if(grid[i][j]==2){
+                    if(rot(i+1,j,grid,temp))
+                        change=true;
+                    if(rot(i-1,j,grid,temp))
+                        change=true;
+                    if(rot(i,j+1,grid,temp))
+                        change=true;
+                    if(rot(i,j-1,grid,temp))
+                        change=true;
+                }
+            }
+        }
+        
+        boolean no_one = true;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[i].length;j++){
+                if(temp[i][j]==1)
+                    no_one = false;
+            }
+        }
+        
+        if(!no_one && !change)
+            return -1;
+        
+        
+        if(no_one){
+            if(change)
+                return count+1;
+            else
+                return count;
+        }
+        
+        return orangesRotting(temp,count+1);
+    }
 }
