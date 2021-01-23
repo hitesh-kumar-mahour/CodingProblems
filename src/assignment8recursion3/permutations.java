@@ -14,16 +14,16 @@ public class permutations {
 	public static void main(String[] args) {
 
 
-		ArrayList<Integer>x=new ArrayList<Integer>();x.add(1);x.add(3);x.add(2);x.add(2);x.add(1);x.add(3);x.add(3);
-		ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
-		permutationsWithDuplicates(x,0,x.size()-1,ans);
-		System.out.println(ans.size());
-		
-		
-//		String a="acbbcac";
-//		ArrayList<String>ans = new ArrayList<String>();
-//		permutationsWithDuplicates(a,0,a.length()-1,ans);
+//		ArrayList<Integer>x=new ArrayList<Integer>();x.add(1);x.add(3);x.add(2);x.add(2);x.add(1);x.add(3);x.add(3);
+//		ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
+//		permutationsWithDuplicates(x,0,x.size()-1,ans);
 //		System.out.println(ans.size());
+		
+		
+		String a="acbbcac";
+		ArrayList<String>ans = new ArrayList<String>();
+		permutationsWithDuplicates(a,0,a.length()-1,ans);
+		System.out.println(ans.size());
 		
 	}
 	
