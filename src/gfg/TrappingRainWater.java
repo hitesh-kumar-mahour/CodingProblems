@@ -5,19 +5,29 @@ import java.util.Scanner;
 
 public class TrappingRainWater {
 	
+	//Time O(n), Space O(1)
 	public static int fun(int[]a) {
 	    
-	    int ans=0;
-	    int []l_max=new int[a.length];
-	    int []r_max=new int[a.length];
-	    for(int i=1 ;i<a.length;i++)
-	        l_max[i]=Math.max(a[i-1],l_max[i-1]);
-	    for(int i=a.length-2 ;i>=0;i--)
-	        r_max[i]=Math.max(a[i+1],r_max[i+1]);
-	  
-	    for(int i=0;i<a.length;i++)
-	        ans+=Math.max(0,Math.min(l_max[i],r_max[i])-a[i]);
-	    return ans;
+		int n=a.length;
+	    
+        if(n<=2) return 0;
+        
+        int l=0,r=n-1,l_max=0,r_max=0,water=0;
+        
+        while(l<=r){
+            
+            if(a[l]<=a[r]){
+                water+=Math.max(0,l_max-a[l]);
+                l_max=Math.max(l_max,a[l]);
+                l++;
+            }
+            else{
+                water+=Math.max(0,r_max-a[r]);
+                r_max=Math.max(r_max,a[r]);
+                r--;
+            }
+        }
+        return water;
 
 	}
 	
