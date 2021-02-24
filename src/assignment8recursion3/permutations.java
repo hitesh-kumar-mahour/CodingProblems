@@ -40,9 +40,7 @@ public class permutations {
 			ArrayList<Integer>t=new ArrayList<Integer>();
 			for(int x : a) t.add(x);
 						
-			if(l==i)
-				permutationsWithDuplicates(a, l+1, r,ans);
-			else if (shouldSwap(a, l, i)){
+			if (shouldSwap(a, l, i)){
 				//swap l and i
 				int c = t.get(i); t.set(i, a.get(l)); t.set(l, c);
 				permutationsWithDuplicates(t,l+1,r,ans);
