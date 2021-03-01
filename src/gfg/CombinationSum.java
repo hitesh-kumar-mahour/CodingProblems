@@ -2,7 +2,8 @@ package gfg;
 
 import java.util.*;
 
-
+//https://www.geeksforgeeks.org/combinational-sum/
+//https://leetcode.com/problems/combination-sum/submissions/
 public class CombinationSum {
 
 	public static void main (String[] args) {
@@ -34,15 +35,7 @@ public class CombinationSum {
 			return false;
 		
 		if(sum_so_far == sum) {
-			StringBuffer to_print = new StringBuffer();
-			to_print.append("(");
-			for(int j=0;j<so_far.size()-1;j++)	to_print.append(so_far.get(j)+" ");
-			to_print.append(so_far.get(so_far.size()-1)+")");	
-				
-			String ans = to_print.toString();
-			
-			System.out.print(ans);
-			
+			System.out.print(so_far);
 			return true;
 		}
 		

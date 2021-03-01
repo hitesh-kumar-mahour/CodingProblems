@@ -3,6 +3,8 @@ package gfg;
 
 import java.util.*;
 
+//https://www.geeksforgeeks.org/all-unique-combinations-whose-sum-equals-to-k/
+//https://leetcode.com/problems/combination-sum-ii/
 public class CombinationSum2 {
 	public static void main (String[] args) {
 		Scanner s = new Scanner(System.in);
